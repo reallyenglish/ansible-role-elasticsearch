@@ -4,5 +4,7 @@ elasticsearch_cluster_name: ""
 elasticsearch_node_name: ""
 elasticsearch_path_data: "/var/db/elasticsearch"
 elasticsearch_path_logs: "/var/log/elasticsearch"
+
+elasticsearch_network_host: "_site_"
 elasticsearch_http_port: 9200
 elasticsearch_http_compression: "true"
