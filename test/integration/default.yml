@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+    - ansible-role-elasticsearch
+  vars:
+    elasticsearch_cluster_name: testcluster
+    elasticsearch_node_name: testnode
