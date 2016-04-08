@@ -6,7 +6,8 @@
     - "{{ ansible_os_family }}.yml"
     - "main.yml"
 
-- include: "install-{{ ansible_os_family }}.yml"
+- include: install-FreeBSD.yml
+  when: ansible_os_family == 'FreeBSD'
 
 - include: configure.yml
 
