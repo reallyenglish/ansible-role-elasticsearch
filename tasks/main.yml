@@ -1,0 +1,15 @@
+---
+# tasks file for ansible-role-elasticsearch
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+    - "main.yml"
+
+- include: "install-{{ ansible_os_family }}.yml"
+
+- include: configure.yml
+
+- name: Start elasticsearch
+  service: name=elasticsearch state=started enabled=yes
+

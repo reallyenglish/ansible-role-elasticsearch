@@ -1,0 +1,4 @@
+---
+
+- name: Ensure elasticsearch is installed
+  pkgng: name='elasticsearch2' state='present'
