@@ -12,6 +12,7 @@ Role Variables
 --------------
 
 | variable | description | default |
+|----------|-------------|---------|
 | elasticsearch\_cluster\_name | cluster.name, required | "" |
 | elasticsearch\_node\_name | node.name, required | "" |
 | elasticsearch\_path\_data | path.data | "/var/db/elasticsearch" |
