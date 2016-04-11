@@ -5,11 +5,15 @@ elasticsearch_node_name: ""
 elasticsearch_path_data: "/var/db/elasticsearch"
 elasticsearch_path_logs: "/var/log/elasticsearch"
 
-elasticsearch_network_host: "_site_"
 elasticsearch_http_port: 9200
 elasticsearch_http_compression: "true"
+
 elasticsearch_node_master: "true"
 elasticsearch_node_data: "true"
+
 elasticsearch_discovery_zen_ping_multicast_enabled: "false"
 elasticsearch_discovery_zen_ping_unicast_hosts: []
+
+elasticsearch_network_host: ""
 elasticsearch_network_publish_host: []
+elasticsearch_network_bind_host: ""
