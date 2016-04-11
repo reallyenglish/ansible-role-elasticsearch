@@ -22,6 +22,7 @@ Role Variables
 | elasticsearch\_http\_compression | http.compression | "true" |
 | elasticsearch\_node\_master | node.master | "true" |
 | elasticsearch\_node\_data | node.data | "true" |
+| elasticsearch\_discovery\_zen\_ping\_multicast\_enabled | discovery.zen.ping.multicast.enabled | "false" |
 
 Dependencies
 ------------
