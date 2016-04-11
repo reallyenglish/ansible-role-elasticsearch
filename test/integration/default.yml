@@ -4,3 +4,5 @@
   vars:
     elasticsearch_cluster_name: testcluster
     elasticsearch_node_name: testnode
+    elasticsearch_discovery_zen_ping_unicast_hosts:
+      - "\"192.168.1.1:9300\""

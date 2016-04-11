@@ -24,6 +24,8 @@ end
 describe file("#{ es_config_path }/elasticsearch.yml") do
   its(:content) { should match /cluster\.name: testcluster/ }
   its(:content) { should match /node\.name: testnode/ }
+  its(:content) { should match /discovery.zen.ping.multicast.enabled: false/ }
+  its(:content) { should match /discovery.zen.ping.unicast.hosts: \[ "192.168.1.1:9300" \]/ }
   it { should be_owned_by es_user_name }
   it { should be_grouped_into es_user_group }
   it { should be_mode 440 }

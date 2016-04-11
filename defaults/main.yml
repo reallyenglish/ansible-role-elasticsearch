@@ -11,3 +11,4 @@ elasticsearch_http_compression: "true"
 elasticsearch_node_master: "true"
 elasticsearch_node_data: "true"
 elasticsearch_discovery_zen_ping_multicast_enabled: "false"
+elasticsearch_discovery_zen_ping_unicast_hosts: []
