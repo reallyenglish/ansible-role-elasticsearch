@@ -23,6 +23,8 @@ Role Variables
 | elasticsearch\_node\_master | node.master | "true" |
 | elasticsearch\_node\_data | node.data | "true" |
 | elasticsearch\_discovery\_zen\_ping\_multicast\_enabled | discovery.zen.ping.multicast.enabled | "false" |
+| elasticsearch_network_publish_host| discovery.zen.ping.multicast.enabled | [] |
+| elasticsearch_network_publish_host | network.publish_host | [] |
 
 Dependencies
 ------------
