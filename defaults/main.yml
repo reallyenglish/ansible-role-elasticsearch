@@ -8,3 +8,5 @@ elasticsearch_path_logs: "/var/log/elasticsearch"
 elasticsearch_network_host: "_site_"
 elasticsearch_http_port: 9200
 elasticsearch_http_compression: "true"
+elasticsearch_node_master: "true"
+elasticsearch_node_data: "true"
