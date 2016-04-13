@@ -8,12 +8,14 @@ es_user_name    = 'elasticsearch'
 es_user_group   = 'elasticsearch'
 
 es_plugin_command = '/usr/share/elasticsearch/bin/plugin'
+es_plugins_directory = '/usr/share/elasticsearch/plugins'
 
 case os[:family]
 when 'freebsd'
   es_package_name = 'elasticsearch2'
   es_config_path = '/usr/local/etc/elasticsearch'
   es_plugin_command = '/usr/local/bin/elasticsearch-plugin'
+  es_plugins_directory = '/usr/local/lib/elasticsearch/plugins'
 end
 
 describe service(es_service_name) do
@@ -23,6 +25,12 @@ end
 describe package(es_package_name) do
   it { should be_installed }
 end 
+
+[ 9200, 9300 ].each do |p|
+  describe port(p) do
+    it { should be_listening }
+  end
+end
 
 describe file("#{ es_config_path }/elasticsearch.yml") do
   its(:content) { should match /cluster\.name: testcluster/ }
@@ -40,6 +48,10 @@ describe file("#{ es_config_path }/elasticsearch.yml") do
   it { should be_owned_by es_user_name }
   it { should be_grouped_into es_user_group }
   it { should be_mode 440 }
+end
+
+describe file(es_plugins_directory) do
+  it { should be_directory }
 end
 
 describe command("#{es_plugin_command} list") do
