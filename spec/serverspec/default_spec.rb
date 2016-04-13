@@ -7,10 +7,13 @@ es_config_path  = '/etc/elasticsearch'
 es_user_name    = 'elasticsearch'
 es_user_group   = 'elasticsearch'
 
+es_plugin_command = '/usr/share/elasticsearch/bin/plugin'
+
 case os[:family]
 when 'freebsd'
   es_package_name = 'elasticsearch2'
   es_config_path = '/usr/local/etc/elasticsearch'
+  es_plugin_command = '/usr/local/bin/elasticsearch-plugin'
 end
 
 describe service(es_service_name) do
@@ -30,4 +33,10 @@ describe file("#{ es_config_path }/elasticsearch.yml") do
   it { should be_owned_by es_user_name }
   it { should be_grouped_into es_user_group }
   it { should be_mode 440 }
+end
+
+describe command("#{es_plugin_command} list") do
+  its(:stdout) { should match /^\s+- hq/ }
+  its(:stderr) { should eq ''}
+  its(:exit_status) { should eq 0 }
 end

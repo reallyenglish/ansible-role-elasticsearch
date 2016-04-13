@@ -1,2 +1,4 @@
 ---
 elasticsearch_path_conf: "/usr/local/etc/elasticsearch"
+__elasticsearch_plugin_command: "/usr/local/bin/elasticsearch-plugin"
+__elasticsearch_plugins_dir: "/usr/local/lib/elasticsearch/plugins"

@@ -26,6 +26,29 @@ Role Variables
 | elasticsearch_network_publish_host| discovery.zen.ping.multicast.enabled | [] |
 | elasticsearch_network_publish_host | network.publish_host | [] |
 
+| elasticsearch\_plugin\_command | path to plugin command |  "{{ \_\_elasticsearch\_plugin\_command }}" |
+| elasticsearch\_plugins\_dir | path to plugin directory | "{{ \_\_elasticsearch\_plugins\_dir }}" |
+| elasticsearch\_plugins\_to\_add | a hash of plugins to install | {} |
+| elasticsearch\_plugin\_timeout | timeout value for `plugin`. note that `plugin install` fails when downloading the file, not connecting to remote, exceeds the value | 30m |
+
+elasticsearch\_plugins\_to\_add
+----------------------------
+
+    elasticsearch_plugins_to_add:
+      $argument_for_plugin_command:
+        name: $the_plugin_name
+
+$argument\_for\_plugin\_command can be:
+
+* royrusso/elasticsearch-HQ (github)
+* royrusso/elasticsearch-HQ/v1.0.0 (with version)
+* file:///path/to/plugin.zip (local file)
+* org.elasticsearch.plugin/mapper-attachments/3.0.0 (Maven)
+
+see https://www.elastic.co/guide/en/elasticsearch/plugins/2.3/installation.html
+
+$the\_plugin\_name can be found by `plugin list` after `plugin install`.
+
 Dependencies
 ------------
 
@@ -40,6 +63,9 @@ Example Playbook
       vars:
         elasticsearch_cluster_name: testcluster
         elasticsearch_node_name: testnode
+        elasticsearch_plugins_to_add:
+          royrusso/elasticsearch-HQ:
+            name: hq
 
 License
 -------
