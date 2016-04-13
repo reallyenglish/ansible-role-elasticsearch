@@ -30,6 +30,13 @@ describe file("#{ es_config_path }/elasticsearch.yml") do
   its(:content) { should match /discovery.zen.ping.multicast.enabled: false/ }
   its(:content) { should match /discovery.zen.ping.unicast.hosts: \[ "10.0.2.15" \]/ }
   its(:content) { should match /network.publish_host: \[ "10.0.2.15" \]/ }
+  its(:content) { should match /http\.cors\.enabled: true/ }
+  its(:content) { should match /http\.cors\.allow-origin: "\*"/ }
+  its(:content) { should match /http\.cors\.max-age: 86400/ }
+  its(:content) { should match /http\.cors\.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE/ }
+  its(:content) { should match /http\.cors\.allow-headers: X-Requested-With, Content-Type, Content-Length/ }
+  its(:content) { should match /http\.cors\.allow-credentials: true/}
+
   it { should be_owned_by es_user_name }
   it { should be_grouped_into es_user_group }
   it { should be_mode 440 }
