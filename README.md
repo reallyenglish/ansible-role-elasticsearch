@@ -31,6 +31,13 @@ Role Variables
 | elasticsearch\_plugins\_to\_add | a hash of plugins to install | {} |
 | elasticsearch\_plugin\_timeout | timeout value for `plugin`. note that `plugin install` fails when downloading the file, not connecting to remote, exceeds the value | 30m |
 
+| elasticsearch\_http\_cors\_enabled | http.cors.enabled | "false" |
+| elasticsearch\_http\_cors\_allow\_origin | http.cors.allow-origin | "" |
+| elasticsearch\_http\_cors\_max\_age | http.cors.max-age | 1728000 |
+| elasticsearch\_http\_cors\_allow\_methods | http.cors.allow-methods | "" |
+| elasticsearch\_http\_cors\_allow\_headers | http.cors.allow-headers | "" |
+| elasticsearch\_http\_cors\_allow\_credentials | http.cors.allow-credentials | "false" |
+
 elasticsearch\_plugins\_to\_add
 ----------------------------
 
@@ -66,6 +73,12 @@ Example Playbook
         elasticsearch_plugins_to_add:
           royrusso/elasticsearch-HQ:
             name: hq
+        elasticsearch_http_cors_enabled: "true"
+        elasticsearch_http_cors_allow_origin: '"*"'
+        elasticsearch_http_cors_max_age: 86400
+        elasticsearch_http_cors_allow_methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
+        elasticsearch_http_cors_allow_headers: "X-Requested-With, Content-Type, Content-Length"
+        elasticsearch_http_cors_allow_credentials: "true"
 
 License
 -------

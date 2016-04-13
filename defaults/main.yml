@@ -22,3 +22,10 @@ elasticsearch_plugin_command: "{{ __elasticsearch_plugin_command }}"
 elasticsearch_plugins_dir: "{{ __elasticsearch_plugins_dir }}"
 elasticsearch_plugins_to_add: {}
 elasticsearch_plugin_timeout: 30m
+
+elasticsearch_http_cors_enabled: "false"
+elasticsearch_http_cors_allow_origin: ""
+elasticsearch_http_cors_max_age: 1728000
+elasticsearch_http_cors_allow_methods: ""
+elasticsearch_http_cors_allow_headers: ""
+elasticsearch_http_cors_allow_credentials: "false"

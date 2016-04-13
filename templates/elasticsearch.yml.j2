@@ -15,3 +15,12 @@ network.bind_host: {{ elasticsearch_network_bind_host }}
 
 discovery.zen.ping.multicast.enabled: {{ elasticsearch_discovery_zen_ping_multicast_enabled }}
 discovery.zen.ping.unicast.hosts: [ {{ elasticsearch_discovery_zen_ping_unicast_hosts | join(',') }} ] 
+{% if elasticsearch_http_cors_enabled == "true" -%}
+
+http.cors.enabled: {{ elasticsearch_http_cors_enabled }}
+http.cors.allow-origin: {{ elasticsearch_http_cors_allow_origin }}
+http.cors.max-age: {{ elasticsearch_http_cors_max_age | default("1728000") }}
+http.cors.allow-methods: {{ elasticsearch_http_cors_allow_methods | default("OPTIONS, HEAD, GET, POST, PUT, DELETE") }}
+http.cors.allow-headers: {{ elasticsearch_http_cors_allow_headers | default("X-Requested-With, Content-Type, Content-Length") }}
+http.cors.allow-credentials: {{ elasticsearch_http_cors_allow_credentials | default("false") }}
+{% endif -%}
