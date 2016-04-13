@@ -11,6 +11,8 @@
 
 - include: configure.yml
 
+- include: plugins.yml
+
 - name: Start elasticsearch
   service: name=elasticsearch state=started enabled=yes
 
