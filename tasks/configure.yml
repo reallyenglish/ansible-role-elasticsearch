@@ -4,8 +4,8 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: elasticsearch
-    group: elasticsearch
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_group }}"
     mode: 0750
   with_items:
     - "{{ elasticsearch_path_data }}"

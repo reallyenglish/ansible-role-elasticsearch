@@ -2,5 +2,5 @@
 
 - name: Install elasticsearch
   pkgng:
-    name: elasticsearch2
+    name: "{{ elasticsearch_package }}"
     state: present

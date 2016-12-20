@@ -1,9 +1,13 @@
 ---
 # defaults file for ansible-role-elasticsearch
+elasticsearch_user: "{{ __elasticsearch_user }}"
+elasticsearch_group: "{{ __elasticsearch_group }}"
+elasticsearch_package: "{{ __elasticsearch_package }}"
 elasticsearch_cluster_name: ""
 elasticsearch_node_name: ""
-elasticsearch_path_data: "/var/db/elasticsearch"
-elasticsearch_path_logs: "/var/log/elasticsearch"
+elasticsearch_path_conf: "{{ __elasticsearch_path_conf }}"
+elasticsearch_path_data: "{{ __elasticsearch_path_data }}"
+elasticsearch_path_logs: "{{ __elasticsearch_path_logs }}"
 
 elasticsearch_http_port: 9200
 elasticsearch_http_compression: "true"

@@ -1,4 +1,9 @@
 ---
-elasticsearch_path_conf: "/usr/local/etc/elasticsearch"
+__elasticsearch_user: elasticsearch
+__elasticsearch_group: elasticsearch
+__elasticsearch_package: elasticsearch2
+__elasticsearch_path_conf: "/usr/local/etc/elasticsearch"
+__elasticsearch_path_data: "/var/db/elasticsearch"
+__elasticsearch_path_logs: "/var/log/elasticsearch"
 __elasticsearch_plugin_command: "/usr/local/bin/elasticsearch-plugin"
 __elasticsearch_plugins_dir: "/usr/local/lib/elasticsearch/plugins"
