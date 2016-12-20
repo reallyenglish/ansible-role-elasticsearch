@@ -16,7 +16,8 @@
     src: "{{ item }}.j2"
     dest: "{{ elasticsearch_path_conf  }}/{{ item }}"
     mode: 0440
-    owner: elasticsearch
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_group }}"
   with_items:
     - elasticsearch.yml
     - logging.yml

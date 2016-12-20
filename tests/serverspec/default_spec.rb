@@ -16,6 +16,11 @@ when 'freebsd'
   es_config_path = '/usr/local/etc/elasticsearch'
   es_plugin_command = '/usr/local/bin/elasticsearch-plugin'
   es_plugins_directory = '/usr/local/lib/elasticsearch/plugins'
+when "openbsd"
+  es_user_name = "_elasticsearch"
+  es_user_group = "_elasticsearch"
+  es_plugin_command = "/usr/local/elasticsearch/bin/plugin"
+  es_plugins_directory = "/usr/local/elasticsearch/plugins"
 end
 
 describe service(es_service_name) do
