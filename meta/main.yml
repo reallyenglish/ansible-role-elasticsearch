@@ -22,4 +22,4 @@ galaxy_info:
   galaxy_tags:
     - system
 dependencies:
-  - { role: reallyenglish.redhat-repo }
+  - { role: reallyenglish.redhat-repo, when: ansible_os_family == "RedHat" }
