@@ -1,18 +1,16 @@
 ---
 # tasks file for ansible-role-elasticsearch
 
-- include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_os_family }}.yml"
-    - "main.yml"
+- include_vars: "{{ ansible_os_family }}.yml"
 
-- include: install-FreeBSD.yml
-  when: ansible_os_family == 'FreeBSD'
+- include: "install-{{ ansible_os_family }}.yml"
 
 - include: configure.yml
 
 - include: plugins.yml
 
 - name: Start elasticsearch
-  service: name=elasticsearch state=started enabled=yes
-
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes

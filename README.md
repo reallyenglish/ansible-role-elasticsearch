@@ -1,15 +1,12 @@
-ansible-role-elasticsearch
-=============
+# ansible-role-elasticsearch
 
 Install and configure elasticsearch.
 
-Requirements
-------------
+# Requirements
 
 None
 
-Role Variables
---------------
+# Role Variables
 
 | variable | description | default |
 |----------|-------------|---------|
@@ -38,8 +35,7 @@ Role Variables
 | elasticsearch\_http\_cors\_allow\_headers | http.cors.allow-headers | "" |
 | elasticsearch\_http\_cors\_allow\_credentials | http.cors.allow-credentials | "false" |
 
-elasticsearch\_plugins\_to\_add
-----------------------------
+# elasticsearch\_plugins\_to\_add
 
     elasticsearch_plugins_to_add:
       $argument_for_plugin_command:
@@ -56,36 +52,48 @@ see https://www.elastic.co/guide/en/elasticsearch/plugins/2.3/installation.html
 
 $the\_plugin\_name can be found by `plugin list` after `plugin install`.
 
-Dependencies
-------------
+# Dependencies
 
 None
 
-Example Playbook
-----------------
+# Example Playbook
 
-    - hosts: all
-      roles:
-        - ansible-role-elasticsearch
-      vars:
-        elasticsearch_cluster_name: testcluster
-        elasticsearch_node_name: testnode
-        elasticsearch_plugins_to_add:
-          royrusso/elasticsearch-HQ:
-            name: hq
-        elasticsearch_http_cors_enabled: "true"
-        elasticsearch_http_cors_allow_origin: '"*"'
-        elasticsearch_http_cors_max_age: 86400
-        elasticsearch_http_cors_allow_methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
-        elasticsearch_http_cors_allow_headers: "X-Requested-With, Content-Type, Content-Length"
-        elasticsearch_http_cors_allow_credentials: "true"
+```yaml
+- hosts: all
+  roles:
+    - ansible-role-elasticsearch
+  vars:
+    elasticsearch_cluster_name: testcluster
+    elasticsearch_node_name: testnode
+    elasticsearch_plugins_to_add:
+      royrusso/elasticsearch-HQ:
+        name: hq
+    elasticsearch_http_cors_enabled: "true"
+    elasticsearch_http_cors_allow_origin: '"*"'
+    elasticsearch_http_cors_max_age: 86400
+    elasticsearch_http_cors_allow_methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
+    elasticsearch_http_cors_allow_headers: "X-Requested-With, Content-Type, Content-Length"
+    elasticsearch_http_cors_allow_credentials: "true"
+```
 
-License
--------
+# License
 
-BSD
+```
+Copyright (c) 2016 Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
 
-Author Information
-------------------
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+# Author Information
 
 Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
