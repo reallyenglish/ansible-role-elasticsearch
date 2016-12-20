@@ -1,14 +1,16 @@
 ---
 
-- name: Ensure plugins directory exists
-  file: "path={{ elasticsearch_plugins_dir }} state=directory"
+- name: Create plugins directory
+  file:
+    path: "{{ elasticsearch_plugins_dir }}"
+    state: directory
 
 - name: Register installed plugins
   shell: "ls -1 {{ elasticsearch_plugins_dir }}"
   register: shell_output
   changed_when: False
 
-- name: Ensure plugins are installed
+- name: Install plugins
   command: "{{ elasticsearch_plugin_command }} install {{ item.key }} --timeout {{ elasticsearch_plugin_timeout }}"
   with_dict: "{{ elasticsearch_plugins_to_add }}"
   when: not ( shell_output.stdout | search(item.value.name) )

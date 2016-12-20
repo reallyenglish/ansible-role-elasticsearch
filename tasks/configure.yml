@@ -1,15 +1,24 @@
 ---
 
-- name: Ensure data directory exists
-  file: path={{ item }} state=directory owner=elasticsearch group=elasticsearch mode=0750
+- name: Create data directory exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0750
   with_items:
     - "{{ elasticsearch_path_data }}"
     - "{{ elasticsearch_path_logs }}"
 
 - name: Create elasticsearch.yml and logging.yml
-  template: src={{ item }}.j2 dest={{ elasticsearch_path_conf  }}/{{ item}} mode=0440 owner=elasticsearch
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ elasticsearch_path_conf  }}/{{ item }}"
+    mode: 0440
+    owner: elasticsearch
   with_items:
-    - "elasticsearch.yml"
-    - "logging.yml"
+    - elasticsearch.yml
+    - logging.yml
   notify:
     - restart elasticsearch

@@ -1,19 +1,13 @@
 ---
-# handlers file for ansible-role-elasticsearch
 
-# XXX sleep is required as java process does not immediately stop. this is not
-# reliable but should work (hopefully) in most cases.
-#
-# # for i in `jot - 1 10` ; do echo -n $i; /usr/local/etc/rc.d/elasticsearch restart >/dev/null 2>&1 ; if  [ $? == 1 ]; then echo failed ; else echo ; fi done
-# 1
-# 2
-# 3
-# 4
-# 5
-# 6
-# 7failed
-# 8
-# 9
-# 10failed
 - name: restart elasticsearch
-  service: name=elasticsearch state=restarted enabled=yes sleep=20
+  service:
+    name: elasticsearch
+    state: restarted
+    enabled: yes
+  notify: Wait for elasticsearch to start
+
+- name: Wait for elasticsearch to start
+  wait_for:
+    host: localhost
+    port: "{{ elasticsearch_http_port }}"
