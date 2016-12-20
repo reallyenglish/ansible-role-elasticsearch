@@ -35,7 +35,7 @@ platforms:
 
   - name: openbsd-6.0-amd64
     driver:
-      box: trombik/test-openbsd-6.0-amd64
+      box: trombik/ansible-openbsd-6.0-amd64
       box_check_update: false
     driver_config:
       ssh:
