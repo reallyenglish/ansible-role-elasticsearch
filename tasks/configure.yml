@@ -22,4 +22,4 @@
     - elasticsearch.yml
     - logging.yml
   notify:
-    - restart elasticsearch
+    - Restart elasticsearch
