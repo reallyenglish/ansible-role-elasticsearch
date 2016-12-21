@@ -4,3 +4,8 @@
   pkgng:
     name: "{{ elasticsearch_package }}"
     state: present
+
+- name: Patch rc script
+  patch:
+    src: wait_for.patch
+    dest: /usr/local/etc/rc.d/elasticsearch
