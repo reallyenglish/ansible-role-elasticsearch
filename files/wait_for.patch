@@ -1,0 +1,10 @@
+--- elasticsearch.orig  2016-12-21 09:16:08.857528000 +0000
++++ elasticsearch   2016-12-21 09:12:38.494433000 +0000
+@@ -76,6 +76,7 @@
+ 
+     echo "Stopping ${name}."
+     kill ${rc_pid} 2> /dev/null
++    wait_for_pids ${rc_pid}
+ }
+ 
+ elasticsearch_status()
