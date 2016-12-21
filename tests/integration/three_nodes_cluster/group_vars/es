@@ -1,0 +1,19 @@
+---
+hosts_map:
+  192.168.21.101:
+    - es1
+  192.168.21.102:
+    - es2
+  192.168.21.103:
+    - es3
+elasticsearch_cluster_name: test
+elasticsearch_node_name: "{{ ansible_fqdn }}"
+elasticsearch_discovery_zen_ping_unicast_hosts:
+  - 192.168.21.101
+  - 192.168.21.102
+  - 192.168.21.103
+elasticsearch_network_host:
+  - "{{ ansible_em1.ipv4[0].address }}"
+  - 127.0.0.1
+elasticsearch_network_bind_host: "{{ elasticsearch_network_host }}"
+elasticsearch_network_publish_host: "{{ elasticsearch_network_host }}"
