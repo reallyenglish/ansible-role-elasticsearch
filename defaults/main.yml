@@ -18,9 +18,9 @@ elasticsearch_node_data: "true"
 elasticsearch_discovery_zen_ping_multicast_enabled: "false"
 elasticsearch_discovery_zen_ping_unicast_hosts: []
 
-elasticsearch_network_host: ""
+elasticsearch_network_host: []
 elasticsearch_network_publish_host: []
-elasticsearch_network_bind_host: ""
+elasticsearch_network_bind_host: []
 
 elasticsearch_plugin_command: "{{ __elasticsearch_plugin_command }}"
 elasticsearch_plugins_dir: "{{ __elasticsearch_plugins_dir }}"

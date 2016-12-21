@@ -9,9 +9,9 @@ node.data: {{ elasticsearch_node_data }}
 http.port: {{ elasticsearch_http_port }}
 http.compression: {{ elasticsearch_http_compression }}
 
-network.host: {{ elasticsearch_network_host }}
-network.publish_host: [ {{ elasticsearch_network_publish_host | join(',') }} ]
-network.bind_host: {{ elasticsearch_network_bind_host }}
+network.host: [ {{ elasticsearch_network_host | join(', ') }} ]
+network.publish_host: [ {{ elasticsearch_network_publish_host | join(', ') }} ]
+network.bind_host: [ {{ elasticsearch_network_bind_host | join(', ') }} ]
 
 discovery.zen.ping.multicast.enabled: {{ elasticsearch_discovery_zen_ping_multicast_enabled }}
 discovery.zen.ping.unicast.hosts: [ {{ elasticsearch_discovery_zen_ping_unicast_hosts | join(',') }} ] 
