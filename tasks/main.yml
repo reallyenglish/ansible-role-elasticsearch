@@ -14,3 +14,11 @@
     name: elasticsearch
     state: started
     enabled: yes
+  register: register_elasticsearch_start
+
+- name: Wait for elasticsearch to start in task
+  wait_for:
+    host: localhost
+    port: "{{ elasticsearch_http_port }}"
+  when:
+    - register_elasticsearch_start.changed

@@ -4,7 +4,7 @@ Install and configure elasticsearch.
 
 # Requirements
 
-None
+- ansible-role-redhat-repo (for CentOS only)
 
 # Role Variables
 

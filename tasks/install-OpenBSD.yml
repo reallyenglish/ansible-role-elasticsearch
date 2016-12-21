@@ -1,6 +1,6 @@
 ---
 
 - name: Install elasticsearch
-  pkgng:
+  openbsd_pkg:
     name: "{{ elasticsearch_package }}"
     state: present

@@ -4,8 +4,8 @@
   file:
     path: "{{ item }}"
     state: directory
-    owner: elasticsearch
-    group: elasticsearch
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_group }}"
     mode: 0750
   with_items:
     - "{{ elasticsearch_path_data }}"
@@ -16,9 +16,10 @@
     src: "{{ item }}.j2"
     dest: "{{ elasticsearch_path_conf  }}/{{ item }}"
     mode: 0440
-    owner: elasticsearch
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_group }}"
   with_items:
     - elasticsearch.yml
     - logging.yml
   notify:
-    - restart elasticsearch
+    - Restart elasticsearch

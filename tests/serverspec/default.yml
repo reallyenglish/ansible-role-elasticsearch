@@ -1,5 +1,6 @@
 - hosts: all
   roles:
+    - { role: reallyenglish.redhat-repo, when: ansible_os_family == "RedHat" }
     - ansible-role-elasticsearch
   vars:
     elasticsearch_cluster_name: testcluster
@@ -17,3 +18,10 @@
     elasticsearch_http_cors_allow_methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
     elasticsearch_http_cors_allow_headers: "X-Requested-With, Content-Type, Content-Length"
     elasticsearch_http_cors_allow_credentials: "true"
+    redhat_repo:
+      elastic_co:
+        description: Elasticsearch repository for 2.x packages
+        baseurl: https://packages.elastic.co/elasticsearch/2.x/centos
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        gpgcheck: yes
+        enabled: yes
