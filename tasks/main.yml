@@ -8,6 +8,8 @@
 
 - include: "install-{{ ansible_os_family }}.yml"
 
+- include: "configure-jvm-{{ ansible_os_family }}.yml"
+
 - include: configure.yml
 
 - include: plugins.yml

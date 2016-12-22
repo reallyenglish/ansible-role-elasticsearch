@@ -21,3 +21,6 @@ elasticsearch_config_default:
     - _local_
     - _site_
 elasticsearch_config: {}
+
+elasticsearch_jvm_options: []
+elasticsearch_jvm_options_openbsd: {}

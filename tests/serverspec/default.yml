@@ -20,6 +20,12 @@
     elasticsearch_plugins_to_add:
       royrusso/elasticsearch-HQ:
         name: hq
+    elasticsearch_jvm_options:
+      - -XX:+UseCompressedOops
+    elasticsearch_jvm_options_openbsd:
+      ES_MIN_MEM: 257m
+      ES_MAX_MEM: 1024m
+
     redhat_repo:
       elastic_co:
         description: Elasticsearch repository for 2.x packages
