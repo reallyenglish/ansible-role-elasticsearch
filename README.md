@@ -8,32 +8,93 @@ Install and configure elasticsearch.
 
 # Role Variables
 
-| variable | description | default |
+| Variable | Description | Default |
 |----------|-------------|---------|
-| elasticsearch\_cluster\_name | cluster.name, required | "" |
-| elasticsearch\_node\_name | node.name, required | "" |
-| elasticsearch\_path\_data | path.data | "/var/db/elasticsearch" |
-| elasticsearch\_path\_log | path.log | "/var/log/elasticsearch" |
-| elasticsearch\_network\_host | network.host | "\_\_site\_\_" |
-| elasticsearch\_http\_port | http.port | 9200 |
-| elasticsearch\_http\_compression | http.compression | "true" |
-| elasticsearch\_node\_master | node.master | "true" |
-| elasticsearch\_node\_data | node.data | "true" |
-| elasticsearch\_discovery\_zen\_ping\_multicast\_enabled | discovery.zen.ping.multicast.enabled | "false" |
-| elasticsearch_network_publish_host| discovery.zen.ping.multicast.enabled | [] |
-| elasticsearch_network_publish_host | network.publish_host | [] |
+| `elasticsearch_user` | user name of `elasticsearch` | `{{ __elasticsearch_user }}` |
+| `elasticsearch_group` | group name of `elasticsearch` | `{{ __elasticsearch_group }}` |
+| `elasticsearch_package` | package name of `elasticsearch` | `{{ __elasticsearch_package }}` |
+| `elasticsearch_path_conf` | path to `elasticsearch.yml` | `{{ __elasticsearch_path_conf }}` |
+| `elasticsearch_plugin_command` | path to `plugin` command | `{{ __elasticsearch_plugin_command }}` |
+| `elasticsearch_plugins_dir` | path to `plugin` directory | `{{ __elasticsearch_plugins_dir }}` |
+| `elasticsearch_plugins_to_add` | dict of plugins to install (see below) | `{}` |
+| `elasticsearch_plugin_timeout` | value for `--timeout` when installing plugins | `30m` |
+| `elasticsearch_config_default` | dict of default settings | (see below)
+| `elasticsearch_config` | dict of `elasticsearch.yml` that overrides `elasticsearch_config_default` | `{}` |
 
-| elasticsearch\_plugin\_command | path to plugin command |  "{{ \_\_elasticsearch\_plugin\_command }}" |
-| elasticsearch\_plugins\_dir | path to plugin directory | "{{ \_\_elasticsearch\_plugins\_dir }}" |
-| elasticsearch\_plugins\_to\_add | a hash of plugins to install | {} |
-| elasticsearch\_plugin\_timeout | timeout value for `plugin`. note that `plugin install` fails when downloading the file, not connecting to remote, exceeds the value | 30m |
+## `elasticsearch_config_default`
 
-| elasticsearch\_http\_cors\_enabled | http.cors.enabled | "false" |
-| elasticsearch\_http\_cors\_allow\_origin | http.cors.allow-origin | "" |
-| elasticsearch\_http\_cors\_max\_age | http.cors.max-age | 1728000 |
-| elasticsearch\_http\_cors\_allow\_methods | http.cors.allow-methods | "" |
-| elasticsearch\_http\_cors\_allow\_headers | http.cors.allow-headers | "" |
-| elasticsearch\_http\_cors\_allow\_credentials | http.cors.allow-credentials | "false" |
+```yaml
+elasticsearch_config_default:
+  path.data: "{{ __elasticsearch_path_data }}"
+  path.logs: "{{ __elasticsearch_path_logs }}"
+  node.master: "true"
+  mode.data: "true"
+  http.port: 9200
+  http.compression: "true"
+  network.host:
+    - _local_
+    - _site_
+```
+
+## `elasticsearch_plugins_to_add`
+
+| Key | Value |
+|-----|-------|
+| URL of the plugin file (e.g. `royrusso/elasticsearch-HQ`) | Name of plugin (e.g. `hq`) |
+
+## Debian
+
+| Variable | Default |
+|----------|---------|
+| `__elasticsearch_user` | `elasticsearch` |
+| `__elasticsearch_group` | `elasticsearch` |
+| `__elasticsearch_package` | `elasticsearch` |
+| `__elasticsearch_path_conf` | `/etc/elasticsearch` |
+| `__elasticsearch_path_data` | `/var/lib/elasticsearch` |
+| `__elasticsearch_path_logs` | `/var/log/elasticsearch` |
+| `__elasticsearch_plugin_command` | `/usr/share/elasticsearch/bin/plugin` |
+| `__elasticsearch_plugins_dir` | `/usr/share/elasticsearch/plugins` |
+
+## FreeBSD
+
+| Variable | Default |
+|----------|---------|
+| `__elasticsearch_user` | `elasticsearch` |
+| `__elasticsearch_group` | `elasticsearch` |
+| `__elasticsearch_package` | `elasticsearch2` |
+| `__elasticsearch_path_conf` | `/usr/local/etc/elasticsearch` |
+| `__elasticsearch_path_data` | `/var/db/elasticsearch` |
+| `__elasticsearch_path_logs` | `/var/log/elasticsearch` |
+| `__elasticsearch_plugin_command` | `/usr/local/bin/elasticsearch-plugin` |
+| `__elasticsearch_plugins_dir` | `/usr/local/lib/elasticsearch/plugins` |
+
+## OpenBSD
+
+| Variable | Default |
+|----------|---------|
+| `__elasticsearch_user` | `_elasticsearch` |
+| `__elasticsearch_group` | `_elasticsearch` |
+| `__elasticsearch_package` | `elasticsearch` |
+| `__elasticsearch_path_conf` | `/etc/elasticsearch` |
+| `__elasticsearch_path_data` | `/var/elasticsearch` |
+| `__elasticsearch_path_logs` | `/var/log/elasticsearch` |
+| `__elasticsearch_plugin_command` | `/usr/local/elasticsearch/bin/plugin` |
+| `__elasticsearch_plugins_dir` | `/usr/local/elasticsearch/plugins` |
+
+## RedHat
+
+| Variable | Default |
+|----------|---------|
+| `__elasticsearch_user` | `elasticsearch` |
+| `__elasticsearch_group` | `elasticsearch` |
+| `__elasticsearch_package` | `elasticsearch` |
+| `__elasticsearch_path_conf` | `/etc/elasticsearch` |
+| `__elasticsearch_path_data` | `/var/lib/elasticsearch` |
+| `__elasticsearch_path_logs` | `/var/log/elasticsearch` |
+| `__elasticsearch_plugin_command` | `/usr/share/elasticsearch/bin/plugin` |
+| `__elasticsearch_plugins_dir` | `/usr/share/elasticsearch/plugins` |
+
+
 
 # elasticsearch\_plugins\_to\_add
 

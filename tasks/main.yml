@@ -3,6 +3,9 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
+- set_fact:
+    elasticsearch_config_merged: "{{ elasticsearch_config_default | combine(elasticsearch_config, recursive = True) }}"
+
 - include: "install-{{ ansible_os_family }}.yml"
 
 - include: configure.yml
@@ -19,6 +22,6 @@
 - name: Wait for elasticsearch to start in task
   wait_for:
     host: localhost
-    port: "{{ elasticsearch_http_port }}"
+    port: "{{ elasticsearch_config_merged['http.port'] }}"
   when:
     - register_elasticsearch_start.changed

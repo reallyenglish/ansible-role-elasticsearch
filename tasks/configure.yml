@@ -8,8 +8,8 @@
     group: "{{ elasticsearch_group }}"
     mode: 0750
   with_items:
-    - "{{ elasticsearch_path_data }}"
-    - "{{ elasticsearch_path_logs }}"
+    - "{{ elasticsearch_config_merged['path.data'] }}"
+    - "{{ elasticsearch_config_merged['path.logs'] }}"
 
 - name: Create elasticsearch.yml and logging.yml
   template:
