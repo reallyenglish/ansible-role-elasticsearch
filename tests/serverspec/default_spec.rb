@@ -31,6 +31,57 @@ describe package(es_package_name) do
   it { should be_installed }
 end 
 
+case os[:family]
+when "freebsd"
+  describe file("/etc/rc.conf.d/elasticsearch") do
+    it { should be_file }
+    its(:content) { should match(Regexp.escape('JAVA_OPTS="-XX:+UseCompressedOops"')) }
+  end
+
+#  XXX `process` does not support FreeBSD's `ps(1)`
+#
+#  describe process("/usr/local/openjdk8/bin/java") do
+#    it { should be_running }
+#    its(:args) { should match(Regexp.escape("-XX:+UseCompressedOops")) }
+#  end
+  describe command("ps axww") do
+    its(:stdout) { should match(/#{ Regexp.escape("/usr/local/openjdk8/bin/java") }\s+.*#{ Regexp.escape("-XX:+UseCompressedOops") }/) }
+  end
+when "ubuntu"
+  describe file("/etc/default/elasticsearch") do
+    it { should be_file }
+    its(:content) { should match(/^ES_JAVA_OPTS=\"#{ Regexp.escape("-XX:+UseCompressedOops") }\"$/) }
+  end
+
+  describe process("java") do
+    it { should be_running }
+    its(:args) { should match(Regexp.escape("-XX:+UseCompressedOops")) }
+  end
+when "redhat"
+  describe file("/etc/sysconfig/elasticsearch") do
+    it { should be_file }
+    its(:content) { should match(/^ES_JAVA_OPTS=\"#{ Regexp.escape("-XX:+UseCompressedOops") }\"$/) }
+  end
+
+  describe process("java") do
+    it { should be_running }
+    its(:args) { should match(Regexp.escape("-XX:+UseCompressedOops")) }
+  end
+when "openbsd"
+  describe file("/etc/elasticsearch/jvm.in") do
+    it { should be_file }
+    its(:content) { should match(/JAVA_OPTS=\"#{ Regexp.escape("-XX:+UseCompressedOops") }\"$/) }
+  end
+
+  # XXX same issue as FreeBSD
+  # -Xms257m -Xmx1024m
+  describe command("ps axww") do
+    its(:stdout) { should match(/#{ Regexp.escape("/usr/local/jdk-1.8.0/bin/java") }\s+.*#{ Regexp.escape("-XX:+UseCompressedOops") }/) }
+    its(:stdout) { should match(/#{ Regexp.escape("/usr/local/jdk-1.8.0/bin/java") }\s+.*#{ Regexp.escape("-Xms257m") }/) }
+    its(:stdout) { should match(/#{ Regexp.escape("/usr/local/jdk-1.8.0/bin/java") }\s+.*#{ Regexp.escape("-Xmx1024m") }/) }
+  end
+end
+
 [ 9200, 9300 ].each do |p|
   describe port(p) do
     it { should be_listening }

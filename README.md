@@ -20,6 +20,9 @@ Install and configure elasticsearch.
 | `elasticsearch_plugin_timeout` | value for `--timeout` when installing plugins | `30m` |
 | `elasticsearch_config_default` | dict of default settings | (see below)
 | `elasticsearch_config` | dict of `elasticsearch.yml` that overrides `elasticsearch_config_default` | `{}` |
+| `elasticsearch_jvm_options` | options to pass `java` | `[]` |
+| `elasticsearch_jvm_options_openbsd` | in OpenBSD, `elasticsearch_jvm_options` cannot set some options. see below | `{}` |
+
 
 ## `elasticsearch_config_default`
 
@@ -41,6 +44,28 @@ elasticsearch_config_default:
 | Key | Value |
 |-----|-------|
 | URL of the plugin file (e.g. `royrusso/elasticsearch-HQ`) | Name of plugin (e.g. `hq`) |
+
+## `elasticsearch_jvm_options_openbsd` (OpenBSD only)
+
+The following Java options cannot be set by using `elasticsearch_jvm_options`. Use
+`elasticsearch_jvm_options_openbsd` instead.
+
+| Option | Key in `elasticsearch_jvm_options_openbsd` |
+|--------|--------------------------------------------|
+| -Xms | `ES_MIN_MEM` |
+| -Xmx | `ES_MAX_MEM` |
+| -Xmn | `ES_HEAP_NEWSIZE` |
+| -XX:MaxDirectMemorySize | `ES_DIRECT_SIZE` |
+| -Djava.net.preferIPv4Stack | `ES_USE_IPV4` |
+| -Xloggc | `ES_GC_LOG_FILE` |
+
+```yaml
+elasticsearch_jvm_options_openbsd:
+  ES_MIN_MEM: 512m
+  ES_MAX_MEM: 2g
+```
+
+See `/etc/elasticsearch/elasticsearch.in.sh` for details.
 
 ## Debian
 

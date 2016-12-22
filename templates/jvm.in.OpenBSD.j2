@@ -1,0 +1,4 @@
+{% for k, v in elasticsearch_jvm_options_openbsd | dictsort %}
+{{ k }}="{{ v }}"
+{% endfor %}
+JAVA_OPTS="{{ elasticsearch_jvm_options | join(' ') }}"
