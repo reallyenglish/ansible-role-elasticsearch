@@ -10,4 +10,4 @@
 - name: Wait for elasticsearch to start
   wait_for:
     host: localhost
-    port: "{{ elasticsearch_http_port }}"
+    port: "{{ elasticsearch_config_merged['http.port'] }}"

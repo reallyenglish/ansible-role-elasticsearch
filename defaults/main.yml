@@ -3,33 +3,21 @@
 elasticsearch_user: "{{ __elasticsearch_user }}"
 elasticsearch_group: "{{ __elasticsearch_group }}"
 elasticsearch_package: "{{ __elasticsearch_package }}"
-elasticsearch_cluster_name: ""
-elasticsearch_node_name: ""
 elasticsearch_path_conf: "{{ __elasticsearch_path_conf }}"
-elasticsearch_path_data: "{{ __elasticsearch_path_data }}"
-elasticsearch_path_logs: "{{ __elasticsearch_path_logs }}"
-
-elasticsearch_http_port: 9200
-elasticsearch_http_compression: "true"
-
-elasticsearch_node_master: "true"
-elasticsearch_node_data: "true"
-
-elasticsearch_discovery_zen_ping_multicast_enabled: "false"
-elasticsearch_discovery_zen_ping_unicast_hosts: []
-
-elasticsearch_network_host: []
-elasticsearch_network_publish_host: []
-elasticsearch_network_bind_host: []
 
 elasticsearch_plugin_command: "{{ __elasticsearch_plugin_command }}"
 elasticsearch_plugins_dir: "{{ __elasticsearch_plugins_dir }}"
 elasticsearch_plugins_to_add: {}
 elasticsearch_plugin_timeout: 30m
 
-elasticsearch_http_cors_enabled: "false"
-elasticsearch_http_cors_allow_origin: ""
-elasticsearch_http_cors_max_age: 1728000
-elasticsearch_http_cors_allow_methods: ""
-elasticsearch_http_cors_allow_headers: ""
-elasticsearch_http_cors_allow_credentials: "false"
+elasticsearch_config_default:
+  path.data: "{{ __elasticsearch_path_data }}"
+  path.logs: "{{ __elasticsearch_path_logs }}"
+  node.master: "true"
+  mode.data: "true"
+  http.port: 9200
+  http.compression: "true"
+  network.host:
+    - _local_
+    - _site_
+elasticsearch_config: {}
