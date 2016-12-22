@@ -15,9 +15,10 @@ New variable, `elasticsearch_config`, is a dict of `elasticsearch.yml`.
 `elasticsearch_config` can override `elasticsearch_config_default`. At least,
 you should define the following keys and values to run `elasticsearch`.
 
-| Key | Value |
-| `node.name` | `hostname` of the node |
-| `cluster.name` | name of the cluster |
+| Key            | Value                  |
+|----------------|------------------------|
+| `node.name`    | `hostname` of the node |
+| `cluster.name` | name of the cluster    |
 
 Note that, when overriding `network.host`, you should include `_local_` as the
 role relies on the assumption that the service is listening on 127.0.0.1.
