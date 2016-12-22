@@ -120,21 +120,35 @@ None
 # Example Playbook
 
 ```yaml
-- hosts: all
+- hosts: localhost
   roles:
+    - { role: reallyenglish.redhat-repo, when: ansible_os_family == "RedHat" }
     - ansible-role-elasticsearch
   vars:
-    elasticsearch_cluster_name: testcluster
-    elasticsearch_node_name: testnode
+    elasticsearch_config:
+      cluster.name: testcluster
+      node.name: testnode
+      discovery.zen.ping.multicast.enabled: "false"
+      discovery.zen.ping.unicast.hosts:
+        - 10.0.2.15
+      network.publish_host:
+        - 10.0.2.15
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "*"
+      http.cors.max-age: 86400
+      http.cors.allow-methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
+      http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length"
+      http.cors.allow-credentials: "true"
     elasticsearch_plugins_to_add:
       royrusso/elasticsearch-HQ:
         name: hq
-    elasticsearch_http_cors_enabled: "true"
-    elasticsearch_http_cors_allow_origin: '"*"'
-    elasticsearch_http_cors_max_age: 86400
-    elasticsearch_http_cors_allow_methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
-    elasticsearch_http_cors_allow_headers: "X-Requested-With, Content-Type, Content-Length"
-    elasticsearch_http_cors_allow_credentials: "true"
+    redhat_repo:
+      elastic_co:
+        description: Elasticsearch repository for 2.x packages
+        baseurl: https://packages.elastic.co/elasticsearch/2.x/centos
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        gpgcheck: yes
+        enabled: yes
 ```
 
 # License
