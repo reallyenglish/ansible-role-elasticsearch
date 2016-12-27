@@ -5,6 +5,7 @@ Install and configure elasticsearch.
 # Requirements
 
 - ansible-role-redhat-repo (for CentOS only)
+- ansible-role-java
 
 # Role Variables
 
@@ -140,7 +141,8 @@ $the\_plugin\_name can be found by `plugin list` after `plugin install`.
 
 # Dependencies
 
-None
+* reallyenglish.redhat-repo
+* reallyenglish.java
 
 # Example Playbook
 
@@ -180,6 +182,7 @@ None
         gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
         gpgcheck: yes
         enabled: yes
+    apt_repo_to_add: "{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('16.04', '<') %}ppa:webupd8team/java{% endif %}"
 ```
 
 # License

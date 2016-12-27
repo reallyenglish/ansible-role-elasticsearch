@@ -33,3 +33,4 @@
         gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
         gpgcheck: yes
         enabled: yes
+    apt_repo_to_add: "{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('16.04', '<') %}ppa:webupd8team/java{% endif %}"

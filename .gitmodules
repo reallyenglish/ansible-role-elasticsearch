@@ -1,3 +1,0 @@
-[submodule "extra_roles/reallyenglish.redhat-repo"]
-	path = extra_roles/reallyenglish.redhat-repo
-	url = https://github.com/reallyenglish/ansible-role-redhat-repo.git
