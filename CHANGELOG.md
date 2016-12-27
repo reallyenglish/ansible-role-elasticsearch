@@ -23,6 +23,11 @@ you should define the following keys and values to run `elasticsearch`.
 Note that, when overriding `network.host`, you should include `_local_` as the
 role relies on the assumption that the service is listening on 127.0.0.1.
 
+### new dependency
+
+The role depends on `reallyenglish.java` on all platforms and
+`reallyenglish.redhat-repo` on RedHat.
+
 ## Release 1.0.1
 
 * bugfix: variable cannot be used in include
