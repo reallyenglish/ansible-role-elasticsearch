@@ -5,6 +5,7 @@ Install and configure elasticsearch.
 # Requirements
 
 - ansible-role-redhat-repo (for CentOS only)
+- ansible-role-java
 
 # Role Variables
 
@@ -140,7 +141,8 @@ $the\_plugin\_name can be found by `plugin list` after `plugin install`.
 
 # Dependencies
 
-None
+* reallyenglish.redhat-repo
+* reallyenglish.java
 
 # Example Playbook
 
