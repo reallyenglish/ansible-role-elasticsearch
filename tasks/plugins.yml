@@ -3,6 +3,8 @@
 - name: Create plugins directory
   file:
     path: "{{ elasticsearch_plugins_dir }}"
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_group }}"
     state: directory
 
 - name: Register installed plugins
