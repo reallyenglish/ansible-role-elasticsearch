@@ -1,5 +1,9 @@
 # Change log
 
+## Release 2.0.1
+
+* [bug fix] fix wrong permissions on files (#21)
+
 ## Release 2.0.0
 
 This release has backward-incompatible changes.
