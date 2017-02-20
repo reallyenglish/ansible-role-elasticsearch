@@ -4,7 +4,7 @@
   template:
     src: jvm.in.OpenBSD.j2
     dest: /etc/elasticsearch/jvm.in
-    mode: 644
+    mode: 0644
 
 - name: Add `source` to /etc/elasticsearch/elasticsearch.in.sh
   lineinfile:

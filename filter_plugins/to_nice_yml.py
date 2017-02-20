@@ -2,7 +2,16 @@
 
 from ansible import errors
 from ansible.parsing.yaml.dumper import AnsibleDumper
+from ansible.parsing.yaml.objects import AnsibleUnicode
+from ansible.vars.unsafe_proxy import AnsibleUnsafeText
 import yaml
+
+represent_unicode = yaml.representer.SafeRepresenter.represent_unicode
+
+AnsibleDumper.add_representer(
+    AnsibleUnsafeText,
+    represent_unicode,
+)
 
 def to_nice_yaml(a, indent=4, *args, **kw):
     '''Make verbose, human readable yaml'''

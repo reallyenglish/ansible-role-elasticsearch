@@ -3,13 +3,13 @@
 - name: Create /etc/rc.conf.d if it does not exist
   file:
     path: /etc/rc.conf.d
-    mode: 755
+    mode: 0755
     state: directory
 
 - name: Create rc conf flagment
   template:
     src: rc.conf.FreeBSD.j2
     dest: /etc/rc.conf.d/elasticsearch
-    mode: 644
+    mode: 0644
   notify:
     - Restart elasticsearch
