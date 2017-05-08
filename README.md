@@ -167,7 +167,7 @@ $the\_plugin\_name can be found by `plugin list` after `plugin install`.
       http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length"
       http.cors.allow-credentials: "true"
     elasticsearch_plugins_to_add:
-      royrusso/elasticsearch-HQ:
+      royrusso/elasticsearch-HQ/v2.0.3:
         name: hq
     elasticsearch_jvm_options:
       - -XX:+UseCompressedOops
