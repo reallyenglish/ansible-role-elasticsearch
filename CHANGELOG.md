@@ -1,5 +1,9 @@
 # Change log
 
+## Release 2.0.2
+
+* 73cf6a7 [bugfix] fix hq version (#24)
+
 ## Release 2.0.1
 
 * [bug fix] fix wrong permissions on files (#21)
