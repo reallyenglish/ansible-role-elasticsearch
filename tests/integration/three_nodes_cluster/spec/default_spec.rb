@@ -7,7 +7,7 @@ context "after provision finishes" do
         expect(response.status).to eq 200
       end
       it "response is text/plain" do
-        expect(response.headers['content-type']).to match(/application\/json/)
+        expect(response.headers["content-type"]).to match(%r{application/json})
       end
 
       it "shows the test cluster status is green" do
@@ -28,7 +28,7 @@ context "when a cluster is formed" do
   describe server(:es1) do
     it "is killed" do
       current_server.ssh_exec "sudo service elasticsearch stop"
-      result = current_server.ssh_exec "sudo service elasticsearch status" 
+      result = current_server.ssh_exec "sudo service elasticsearch status"
       expect(result).to match(Regexp.escape("elasticsearch not running? (check /var/run/elasticsearch.pid)."))
     end
   end
