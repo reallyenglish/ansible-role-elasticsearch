@@ -11,5 +11,6 @@
     src: rc.conf.FreeBSD.j2
     dest: /etc/rc.conf.d/elasticsearch
     mode: 0644
+    validate: sh -n %s
   notify:
     - Restart elasticsearch
