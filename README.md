@@ -149,7 +149,10 @@ $the\_plugin\_name can be found by `plugin list` after `plugin install`.
 ```yaml
 - hosts: localhost
   roles:
-    - { role: reallyenglish.redhat-repo, when: ansible_os_family == "RedHat" }
+    - role: reallyenglish.redhat-repo
+      when: ansible_os_family == "RedHat"
+    - role: reallyenglish.apt-repo
+      when: ansible_os_family == "Debian"
     - ansible-role-elasticsearch
   vars:
     elasticsearch_config:
