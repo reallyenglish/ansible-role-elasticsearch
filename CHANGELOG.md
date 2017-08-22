@@ -1,5 +1,10 @@
 # Change log
 
+## Release 2.0.3
+
+* 6731b93 [bugfix] make role soft-depend on reallyenglish.redhat-repo and reallyenglish.apt-repo (#27)
+* b8f09e4 [bugfix] remove to_nice_yaml (#26)
+
 ## Release 2.0.2
 
 * 73cf6a7 [bugfix] fix hq version (#24)
