@@ -1,5 +1,9 @@
 # Change log
 
+## Release 2.0.4
+
+* f219a56 [bugfix] use new format (#29)
+
 ## Release 2.0.3
 
 * 6731b93 [bugfix] make role soft-depend on reallyenglish.redhat-repo and reallyenglish.apt-repo (#27)
