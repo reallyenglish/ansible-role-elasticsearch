@@ -5,7 +5,12 @@
     name: "{{ elasticsearch_package }}"
     state: present
 
-- name: Patch rc script
+- name: Patch rc script wait_for.patch
   patch:
     src: wait_for.patch
+    dest: /usr/local/etc/rc.d/elasticsearch
+
+- name: Patch rc script jps.patch
+  patch:
+    src: jps.patch
     dest: /usr/local/etc/rc.d/elasticsearch
