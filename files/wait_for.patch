@@ -1,5 +1,5 @@
---- elasticsearch.orig  2016-12-21 09:16:08.857528000 +0000
-+++ elasticsearch   2016-12-21 09:12:38.494433000 +0000
+--- elasticsearch.orig	2017-08-12 11:17:17.000000000 +0000
++++ elasticsearch	2017-08-29 04:44:48.765845000 +0000
 @@ -76,6 +76,7 @@
  
      echo "Stopping ${name}."
@@ -8,3 +8,12 @@
  }
  
  elasticsearch_status()
+@@ -105,7 +106,7 @@
+         debug "pid file ($_pidfile): no pid in file."
+         return
+     fi
+-    if [ -n "`/usr/local/bin/jps -l | grep -e "^$_pid"`" ]; then
++    if [ -n "`/usr/local/bin/jps -l | grep -v 'process information unavailable' | grep -e "^$_pid"`" ]; then
+         echo -n $_pid
+     fi
+ }
