@@ -8,12 +8,3 @@
  }
  
  elasticsearch_status()
-@@ -105,7 +106,7 @@
-         debug "pid file ($_pidfile): no pid in file."
-         return
-     fi
--    if [ -n "`/usr/local/bin/jps -l | grep -e "^$_pid"`" ]; then
-+    if [ -n "`/usr/local/bin/jps -l | grep -v 'process information unavailable' | grep -e "^$_pid"`" ]; then
-         echo -n $_pid
-     fi
- }
