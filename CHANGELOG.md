@@ -1,5 +1,9 @@
 # Change log
 
+## Release 2.0.5
+
+* f8249f8 [bugfix] ignore dead Java process in status check (#32)
+
 ## Release 2.0.4
 
 * f219a56 [bugfix] use new format (#29)
