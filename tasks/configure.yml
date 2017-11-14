@@ -11,6 +11,14 @@
     - "{{ elasticsearch_config_merged['path.data'] }}"
     - "{{ elasticsearch_config_merged['path.logs'] }}"
 
+- name: Create path.scripts directory if specified
+  # XXX this should have been created by package
+  file:
+    path: "{{ elasticsearch_config_merged['path.scripts'] }}"
+    state: directory
+  when:
+    - "'path.scripts' in elasticsearch_config_merged"
+
 - name: Create elasticsearch.yml and logging.yml
   template:
     src: "{{ item }}.j2"

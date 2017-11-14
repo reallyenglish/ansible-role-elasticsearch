@@ -1,0 +1,51 @@
+- hosts: localhost
+  roles:
+    - role: reallyenglish.redhat-repo
+      when: ansible_os_family == "RedHat"
+    - role: reallyenglish.apt-repo
+      when: ansible_os_family == "Debian"
+    - role: reallyenglish.sysctl
+      when: ansible_os_family == "FreeBSD"
+    - ansible-role-elasticsearch
+  vars:
+    sysctl:
+      # bootstrap checks failed
+      # max file descriptors [58050] for elasticsearch process is too low,
+      # increase to at least [65536]
+      kern.maxfiles: 65536
+      kern.maxfilesperproc: 65536
+    elasticsearch_package: elasticsearch5
+    elasticsearch_config:
+      path.scripts: /usr/local/etc/elasticsearch/scripts
+      cluster.name: testcluster
+      node.name: testnode
+      discovery.zen.ping.unicast.hosts:
+        - 10.0.2.15
+      network.publish_host:
+        - 10.0.2.15
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "*"
+      http.cors.max-age: 86400
+      http.cors.allow-methods: "OPTIONS, HEAD, GET, POST, PUT, DELETE"
+      http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length"
+      http.cors.allow-credentials: "true"
+    elasticsearch_jvm_options:
+      - -XX:+UseCompressedOops
+      # initial heap size [33554432] not equal to maximum heap size
+      # [528482304]; this can cause resize pauses and prevents mlockall from
+      # locking the entire heap
+      # https://www.elastic.co/guide/en/elasticsearch/reference/master/heap-size.html
+      - -Xms1g
+      - -Xmx1g
+    elasticsearch_jvm_options_openbsd:
+      ES_MIN_MEM: 257m
+      ES_MAX_MEM: 1024m
+
+    redhat_repo:
+      elastic_co:
+        description: Elasticsearch repository for 2.x packages
+        baseurl: https://packages.elastic.co/elasticsearch/2.x/centos
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        gpgcheck: yes
+        enabled: yes
+    apt_repo_to_add: "{% if ansible_distribution == 'Ubuntu' and ansible_distribution_version | version_compare('16.04', '<') %}ppa:webupd8team/java{% endif %}"

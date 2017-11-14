@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  customize:
+    # increase memory so that VMs will not lock up
+    memory: 2048
 
 transport:
   name: rsync
@@ -73,3 +76,11 @@ suites:
     verifier:
       name: shell
       command: rspec -c -f d -I tests/serverspec tests/serverspec/default_spec.rb
+  - name: es_v5
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/serverspec/es_v5.yml
+    verifier:
+      name: shell
+      command: rspec -c -f d -I tests/serverspec tests/serverspec/es_v5_spec.rb
+    includes: freebsd-11.1-amd64
