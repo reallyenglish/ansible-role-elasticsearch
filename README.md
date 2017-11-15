@@ -32,7 +32,7 @@ elasticsearch_config_default:
   path.data: "{{ __elasticsearch_path_data }}"
   path.logs: "{{ __elasticsearch_path_logs }}"
   node.master: "true"
-  mode.data: "true"
+  node.data: "true"
   http.port: 9200
   http.compression: "true"
   network.host:

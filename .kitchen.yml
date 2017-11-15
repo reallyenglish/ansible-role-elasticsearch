@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  customize:
+    # increase memory so that VMs will not lock up
+    memory: 2048
 
 transport:
   name: rsync
@@ -20,12 +23,22 @@ provisioner:
     - extra_modules
     - filter_plugins
     - extra_roles
-  ansible_vault_password_file: <%= File.expand_path(ENV['ANSIBLE_VAULT_PASSWORD_FILE'] || '') %>
 
 platforms:
   - name: freebsd-10.3-amd64
     driver:
       box: trombik/ansible-freebsd-10.3-amd64
+      box_check_update: false
+    driver_config:
+      ssh:
+        shell: '/bin/sh'
+    provisioner:
+      extra_vars:
+        ansible_python_interpreter: '/usr/local/bin/python'
+
+  - name: freebsd-11.1-amd64
+    driver:
+      box: trombik/ansible-freebsd-11.1-amd64
       box_check_update: false
     driver_config:
       ssh:
