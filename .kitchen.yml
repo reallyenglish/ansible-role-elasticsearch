@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  customize:
+    # increase memory so that VMs will not lock up
+    memory: 2048
 
 transport:
   name: rsync
